@@ -62,6 +62,9 @@ class HBNBCommand(cmd.Cmd):
             return False
         if args[0] in classes:
             new_dict = self._key_value_parser(args[1:])
+            if 'name' not in new_dict or new_dict['name'] == "":
+                print("** 'name' attribute missing **")
+                return False
             instance = classes[args[0]](**new_dict)
         else:
             print("** class doesn't exist **")
@@ -128,6 +131,7 @@ class HBNBCommand(cmd.Cmd):
         integers = ["number_rooms", "number_bathrooms", "max_guest",
                     "price_by_night"]
         floats = ["latitude", "longitude"]
+
         if len(args) == 0:
             print("** class name missing **")
         elif args[0] in classes:
@@ -137,14 +141,22 @@ class HBNBCommand(cmd.Cmd):
                     if len(args) > 2:
                         if len(args) > 3:
                             if args[0] == "Place":
+                                # Check for negative integers
                                 if args[2] in integers:
                                     try:
                                         args[3] = int(args[3])
+                                        if args[3] < 0:
+                                            print("** invalid negative value for {} **".format(args[2]))
+                                            return
                                     except:
                                         args[3] = 0
+                                # Check for floats
                                 elif args[2] in floats:
                                     try:
                                         args[3] = float(args[3])
+                                        if args[3] == 0.0:
+                                            print("** invalid value for {} **".format(args[2]))
+                                            return
                                     except:
                                         args[3] = 0.0
                             setattr(models.storage.all()[k], args[2], args[3])
@@ -162,3 +174,4 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
+
