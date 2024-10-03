@@ -1,9 +1,16 @@
+#!/usr/bin/python3
 from fabric.api import local
 import os
 from datetime import datetime
 
 def do_pack():
-    """Creates a .tgz archive from the contents of the web_static folder."""
+    """
+    Creates a .tgz archive from the contents of the web_static folder.
+
+    The archive is named using the current date and time and stored in the
+    versions directory. Returns the archive path if successful, otherwise
+    returns None.
+    """
 
     # Create the versions directory if it doesn't exist
     if not os.path.exists("versions"):
