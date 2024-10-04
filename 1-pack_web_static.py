@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """
 generates an archive out of web-static folder
