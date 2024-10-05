@@ -8,7 +8,7 @@ using 1-pack_web_static.py
 from fabric.api import env, run, put, local
 from os.path import exists, isdir
 from datetime import datetime
-env.hosts = ['54.160.49.83', '3.90.189.37']
+env.hosts = ['3.91.243.44', '52.204.227.141']
 
 
 def do_pack():
