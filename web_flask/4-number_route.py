@@ -6,6 +6,7 @@ This script contains the code for three routes
  3. /c/<text> where the text is dynamic
  4. /python/<text> where the text is dynamic, and it will be displayed. 
    if the text is not provided, the default will show up
+ 5. /number/<n>
 """
 
 
@@ -33,6 +34,12 @@ def c_text(text):
 def python_text(text):
     text = text.replace("_"," ")
     return f"Python {text}"
+
+# capture the parameter and checks it whether is an integer or not
+@app.route('/n/<n>', strict_slashes=False)
+def n_number(n):
+    if(n.isnumeric()):
+        return f"{n} is anumber"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
