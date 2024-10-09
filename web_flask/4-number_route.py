@@ -32,12 +32,17 @@ def c_text(text):
 @app.route("/python/",defaults={'text': 'is cool'}, strict_slashes=False)
 @app.route("/python/<text>", strict_slashes=False)
 def python_text(text):
+    # Replace underscores with spaces
     text = text.replace("_"," ")
     return f"Python {text}"
 
 # capture the parameter and checks it whether is an integer or not
 @app.route('/n/<n>', strict_slashes=False)
 def n_number(n):
+     # Replace underscores with spaces
+    n = n.replace("_"," ")
+
+    # check if it is the number
     if(n.isnumeric()):
         return f"{n} is anumber"
 
