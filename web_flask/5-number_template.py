@@ -4,7 +4,7 @@ Flask web application script that handles various routes
 and displays specific messages based on the URL patterns.
 The 6th route, /number_template/<int:n> will render an html page
 """
-from flask import Flask, render_template_string
+from flask import Flask, render_template
 from flask import abort
 
 app = Flask(__name__)
@@ -40,16 +40,7 @@ def number(n):
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
     """Route to display an HTML page with 'Number: n' if n is an integer."""
-    return render_template_string('''
-        <html>
-            <head>
-                <title>Number</title>
-            </head>
-            <body>
-                <h1>Number: {{ n }}</h1>
-            </body>
-        </html>
-    ''', n=n)
+    return render_template('5-number.html', n=n)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
