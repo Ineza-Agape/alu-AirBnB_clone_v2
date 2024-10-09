@@ -1,15 +1,11 @@
 #!/usr/bin/python3
 """
-This script contains the code for three routes
- 1. /
- 2. /hbnb
- 3. /c/<text> where the text is dynamic, and it will be displayed
+This script contains the code for the routes
 """
-
-
 from flask import Flask
 
 app = Flask(__name__)
+
 
 @app.route("/", strict_slashes=False)
 def hello_hbnb():
