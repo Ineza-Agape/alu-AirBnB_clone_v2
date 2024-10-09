@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
 This script contains the code for the routes
+The below three routes are different.
 """
 from flask import Flask
 
