@@ -10,11 +10,6 @@ This script contains the code for three routes
 """
 
 
-#!/usr/bin/python3
-"""
-Flask web application script that handles various routes
-and displays specific messages based on the URL patterns.
-"""
 from flask import Flask, abort
 
 app = Flask(__name__)

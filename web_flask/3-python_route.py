@@ -2,6 +2,7 @@
 """
 Flask web application script that handles various routes
 and displays specific messages based on the URL patterns.
+
 """
 from flask import Flask, abort
 
