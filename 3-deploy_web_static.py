@@ -2,7 +2,7 @@
 """
 a Fabric script to distribute
 an archive to web servers using the function do_deploy.
-using 1-pack_web_static.py
+using 1-pack_web_static.py 
 """
 
 from fabric.api import env, run, put, local
