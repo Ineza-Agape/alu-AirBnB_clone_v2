@@ -1,7 +1,15 @@
 #!/usr/bin/python3
 """
-This script contains the code for the routes
-The below three routes are different.
+Module: web_flask
+Description: A Flask web application that serves different routes
+    with specific outputs.
+
+This module creates a Flask web application that listens on 0.0.0.0:5000
+and provides several routes:
+    - /: displays "Hello HBNB!"
+    - /hbnb: displays "HBNB"
+    - /c/<text>: displays "C " followed by the value of text with
+      underscores replaced by spaces
 """
 from flask import Flask
 
@@ -22,7 +30,14 @@ def hbnb():
 
 @app.route('/c/<text>', strict_slashes=False)
 def c_text(text):
-    """Replace underscores with spaces"""
+    """Display text after replacing underscores with spaces.
+    
+    Args:
+        text (str): The input text where underscores will be replaced
+
+    Returns:
+        str: A string starting with 'C ' followed by the modified text
+    """
     text = text.replace('_', ' ')
     return f"C {text}"
 
