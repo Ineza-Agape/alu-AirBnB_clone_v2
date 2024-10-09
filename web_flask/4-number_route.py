@@ -1,15 +1,8 @@
 #!/usr/bin/python3
 """
-This script contains the code for three routes
- 1. /
- 2. /hbnb
- 3. /c/<text> where the text is dynamic
- 4. /python/<text> where the text is dynamic, and it will be displayed. 
-   if the text is not provided, the default will show up
- 5. /number/<n>
+Flask web application script that handles various routes
+and displays specific messages based on the URL patterns.
 """
-
-
 from flask import Flask, abort
 
 app = Flask(__name__)
@@ -52,15 +45,22 @@ def python_route(text='is cool'):
     return 'Python {}'.format(text.replace('_', ' '))
 
 
-# capture the parameter and checks it whether is an integer or not
-@app.route('/n/<n>', strict_slashes=False)
-def n_number(n):
-     # Replace underscores with spaces
-    n = n.replace("_"," ")
-
-    # check if it is the number
-    if(n.isnumeric()):
-        return f"{n} is anumber"
+@app.route('/number/<n>', strict_slashes=False)
+def number_route(n):
+    """
+    Route that displays 'n is a number' only if n is an integer
+    Args:
+        n: value to check if it's an integer
+    Returns:
+        str: message confirming n is a number
+    Raises:
+        404: if n is not an integer
+    """
+    try:
+        n = int(n)
+        return '{} is a number'.format(n)
+    except ValueError:
+        abort(404)
 
 
 @app.errorhandler(404)
@@ -71,5 +71,3 @@ def not_found(error):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-
-
