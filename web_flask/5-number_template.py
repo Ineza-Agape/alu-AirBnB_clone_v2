@@ -62,6 +62,7 @@ def number_route(n):
     except ValueError:
         abort(404)
 
+
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
     """
@@ -73,11 +74,12 @@ def number_template(n):
     except ValueError:
         abort(404)
 
+
 @app.errorhandler(404)
 def not_found(error):
     """Handle 404 errors"""
     return 'Not found', 404
 
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-
