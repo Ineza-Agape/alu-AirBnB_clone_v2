@@ -1,1 +1,2 @@
-Web Framework of Air BnB clone
+# Web flask project
+Segment in building Airbnb clone project
