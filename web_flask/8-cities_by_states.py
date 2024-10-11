@@ -12,6 +12,8 @@ app = Flask(__name__)
 def cities_by_states():
     """Displays a html page with states and cities"""
     states = storage.all(State)
+    for state in states.values():
+        print(f"State: {state.name}, Cities: {[city.name for city in state.cities]}")
     return render_template('8-cities_by_states.html', states=states)
 
 
