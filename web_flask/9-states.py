@@ -3,11 +3,10 @@
 script starts Flask web app
 listen on 0.0.0.0, port 5000
 """
-
+from flask import Flask, render_template
 from models import storage
 from models.state import State
-from flask import Flask
-from flask import render_template
+
 
 app = Flask(__name__)
 
@@ -15,7 +14,7 @@ app = Flask(__name__)
 @app.route('/states', strict_slashes=False)
 def state_list():
     """Comment"""
-    states = storage.all('State').values()
+    states = sorted(storage.all(State).values(), key=lambda x: x.name)
     return render_template(
         "9-states.html",
         states=states,
@@ -25,10 +24,9 @@ def state_list():
 @app.route('/states/<id>', strict_slashes=False)
 def states_by_id(id):
     """Comment"""
-    all_states = storage.all('State')
-    key = "State.{}".format(id)
     try:
-        state = all_states[key]
+        state = storage.get(State, id)
+        print(state)
         return render_template(
             '9-states.html',
             state=state,
