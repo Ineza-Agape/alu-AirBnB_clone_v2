@@ -26,7 +26,9 @@ def states_by_id(id):
     """Comment"""
     try:
         state = storage.get(State, id)
-        print(state)
+        if state is None:
+            return render_template("9-states.html", condition="not_found")
+    
         return render_template(
             '9-states.html',
             state=state,

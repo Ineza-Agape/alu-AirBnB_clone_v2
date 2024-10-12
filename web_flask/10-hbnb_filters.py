@@ -3,10 +3,21 @@
 script starts Flask web app
 listen on 0.0.0.0, port 5000
 """
+import os
+import sys
 
+# Add the parent directory to sys.path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.abspath(os.path.join(current_dir, '..'))
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
 
-from models import storage
 from flask import Flask, render_template
+from models import storage
+from models.state import State
+from models.amenity import Amenity
+from models.city import City
+
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -108,10 +119,11 @@ def html_filters():
     """display html page with working city/state filters & amenities
     runs with web static css files
     """
-    state_objs = [s for s in storage.all("State").values()]
-    amenity_objs = [a for a in storage.all("Amenity").values()]
+    states = sorted(storage.all(State).values(), key=lambda x: x.name)
+    cities = sorted(storage.all(City).values(), key=lambda x: x.name)
+    amenities = sorted(storage.all(Amenity).values(), key=lambda x: x.name)
     return render_template(
-        "10-hbnb_filters.html", state_objs=state_objs, amenity_objs=amenity_objs
+        "10-hbnb_filters.html", states=states, cities=cities, amenities=amenities
     )
 
 
