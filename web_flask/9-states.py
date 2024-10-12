@@ -29,7 +29,10 @@ def states_by_id(id):
         if state is None:
             return render_template("9-states.html", condition="not_found")
     
-        return render_template('9-states.html', state=state, condition="state_id")
+        return render_template(
+            '9-states.html',
+            state=state,
+            condition="state_id")
     except:
         return render_template('9-states.html', condition="not_found")
 
