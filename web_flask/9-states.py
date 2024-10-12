@@ -28,7 +28,6 @@ def states_by_id(id):
         state = storage.get(State, id)
         if state is None:
             return render_template("9-states.html", condition="not_found")
-    
         return render_template(
             '9-states.html',
             state=state,
