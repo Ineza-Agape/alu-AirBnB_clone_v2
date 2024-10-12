@@ -7,11 +7,14 @@ import sys
 # Add the parent directory to sys.path
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.abspath(os.path.join(current_dir, '..'))
-sys.path.append(parent_dir)
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
 
+# pylint: disable=wrong-import-position
 from flask import Flask, render_template
 from models import storage
 from models.state import State
+# pylint: enable=wrong-import-position
 
 app = Flask(__name__)
 
