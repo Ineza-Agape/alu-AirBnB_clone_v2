@@ -82,21 +82,10 @@ class DBStorage:
                 filter(cls_name.id == obj.id).delete()
 
     def get(self, cls, id):
-        """Retrieve an object based on the class 
-        name and its ID.
-
-        Args:
-            cls (class): The class of the object to 
-            retrieve.
-            id (str): The ID of the object to retrieve.
-
-        Returns:
-            The object if found, else None.
-        """
+        """Retrieve an object based on class and id."""
         if cls in all_classes.values():
-            return self.__session.query(cls).filter(cls.id == id).one_or_none()
+            return self.__session.query(cls).get(id)
         return None
-
 
     def reload(self):
         """Create database session
